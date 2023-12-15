@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, Search } from "./icons";
+import { Search, HamburgerClosed, HamburgerOpened } from "./icons";
 import { usePenggunaContext } from "../context/PenggunaContext";
 
 const Navbar = ({ handleOpen, Open }) => {
@@ -32,7 +32,7 @@ const Navbar = ({ handleOpen, Open }) => {
               <span className="sr-only">Open sidebar</span>
 
               <span className="bg-[#F9A602] rounded-full p-1.5 w-fit h-fit">
-                {Open ? <ArrowLeft /> : <ArrowRight />}
+                {Open ? <HamburgerOpened /> : <HamburgerClosed />}
               </span>
             </button>
             <div className="sm:flex ms-2 md:me-24 gap-5 justify-center items-center hidden">

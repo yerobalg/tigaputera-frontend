@@ -60,6 +60,44 @@ export const ArrowLeft = () => {
   );
 };
 
+export const HamburgerClosed = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 text-white font-medium"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        d="M4 6h16M4 12h16M4 18h7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      />
+    </svg>
+  );
+};
+
+export const HamburgerOpened = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="w-4 h-4 text-white font-medium"
+    >
+      <path
+        d="M6 18L18 6M6 6l12 12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      />
+    </svg>
+  );
+};
+
 export const ArrowRight = () => {
   return (
     <svg

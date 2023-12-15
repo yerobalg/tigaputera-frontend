@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { usePenggunaContext } from "../../context/PenggunaContext";
 import TambahPengeluaran from "../../components/Proyek/Rincian/Popup/TambahPengeluaran";
+import { ArrowLeft } from "../../components/icons";
 
 const Rincian = () => {
   const [alerts, setAlerts] = useState(false);
@@ -42,7 +43,18 @@ const Rincian = () => {
 
   return (
     <Layout>
-      <div className="px-6 pt-6 pb-[30px] bg-white rounded-md flex-col justify-center items-center gap-6 flex w-full">
+      <div className="px-6 pt-6 pb-[30px] bg-white rounded-md flex-col gap-6 flex w-full">
+        <div className="flex flex-col items-start w-full md:mt-0 md:w-fit">
+          <button
+            onClick={() => window.history.back()}
+            className="whitespace-nowrap px-5 py-2 bg-amber-500 rounded-md hover:bg-[#F9A602] text-center text-white text-sm md:text-base font-medium flex md:mt-0 mt-3"
+          >
+            <div className="flex items-center gap-2">
+              <ArrowLeft />
+              Kembali
+            </div>
+          </button>
+        </div>
         {/* TITLE  */}
         <div className="flex justify-start md:justify-between items-start md:items-center w-full md:flex-row flex-col gap-2">
           <div className="flex flex-col gap-3 w-full">
