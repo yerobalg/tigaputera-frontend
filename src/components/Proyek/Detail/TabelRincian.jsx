@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { usePenggunaContext } from "../../../context/PenggunaContext";
+import { EyeIcon } from "../../icons";
 
 const TabelRincian = ({
   id,
@@ -83,7 +84,7 @@ const TabelRincian = ({
                     </th>
                     <td className="px-6 py-3 whitespace-nowrap">
                       {item.name}
-                      {item.isFixedCost && (
+                      {!item.isFixedCost && (
                         <span className="text-red-500">*</span>
                       )}
                     </td>
@@ -97,7 +98,10 @@ const TabelRincian = ({
                           navigate(`/proyek/${id}/rincian/${item.id}`)
                         }
                       >
-                        Rincian
+                        <div className="flex items-center gap-2">
+                          <EyeIcon />
+                          Rincian
+                        </div>
                       </button>
                     </td>
                   </tr>

@@ -210,10 +210,10 @@ const Statistik = () => {
                 img="../components/assets/img/total-proyek.png"
               />
               <Card
-                label="Margin"
+                label="Saldo"
                 item={Statistik.margin}
                 index={1}
-                img="../components/assets/img/total-pengeluaran.png"
+                img="../components/assets/img/total-margin.png"
               />
               <div className="p-2 lg:p-4 opacity-90 bg-white rounded-lg shadow justify-between gap-1 flex flex-col w-full md:w-fit lg:w-full text-sm lg:text-lg font-semibold text-right">
                 <h3 className=" text-slate-800 text-right">

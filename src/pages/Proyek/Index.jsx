@@ -21,7 +21,7 @@ const cardList = [
     value: "totalProject",
   },
   {
-    nama: "Total Pencairan Dana",
+    nama: "Total Pendapatan",
     img: "total-pencairan",
     color: "#1AA053",
     value: "totalIncome",
@@ -33,7 +33,7 @@ const cardList = [
     value: "totalExpenditure",
   },
   {
-    nama: "Total Margin",
+    nama: "Saldo",
     img: "total-margin",
     color: "#F16A1B",
     value: "margin",
