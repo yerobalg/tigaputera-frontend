@@ -68,7 +68,7 @@ const Statistik = () => {
   const interval_month = searchParams.get("interval_month") || "1";
   const user_id =
     penggunaInfo?.role !== "Pengawas"
-      ? searchParams.get("user_id") || undefined
+      ? searchParams.get("inspector_id") || "0"
       : penggunaInfo?.id;
 
   const getAllStatistic = useCallback(async () => {

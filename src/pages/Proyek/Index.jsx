@@ -11,7 +11,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Toast from "../../components/Toast";
 import { usePenggunaContext } from "../../context/PenggunaContext";
-import Loading from "../../components/Loading";
 
 const cardList = [
   {

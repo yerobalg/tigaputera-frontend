@@ -193,8 +193,8 @@ const Detail = () => {
                 Catatan
               </h3>
               <div className="text-slate-900 text-sm md:text-lg font-medium ">
-                <h3>PPN = 11% Pagu pekerjaan</h3>
-                <h3>PPH = 1.5% Pagu pekerjaan</h3>
+                <h3>{`PPN = ${proyekDetail["projectBudget"]?.ppnPercentage}% Pagu Pekerjaan`}</h3>
+                <h3>{`PPh = ${proyekDetail["projectBudget"]?.pphPercentage}% Pagu Pekerjaan`}</h3>
               </div>
             </div>
 
