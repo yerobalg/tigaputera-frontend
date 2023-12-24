@@ -127,6 +127,7 @@ const Proyek = () => {
                 key={index}
                 Statistik={Statistik}
                 isLoading={isLoading}
+                size={250}
               />
             );
           })}

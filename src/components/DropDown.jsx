@@ -10,6 +10,7 @@ const DropDown = ({
   name,
   databases,
   base_id,
+  isDisabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(initial);
@@ -41,6 +42,7 @@ const DropDown = ({
         }
         type="button"
         onClick={toggleDropdown}
+        disabled={isDisabled || false}
       >
         {selectedValue}
         <svg

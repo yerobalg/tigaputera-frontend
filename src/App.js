@@ -20,6 +20,10 @@ const RouteList = [
     Element: lazy(() => import("./pages/Proyek/Detail")),
   },
   {
+    path: "/proyek/:id/buku-kas",
+    Element: lazy(() => import("./pages/Proyek/BukuKas")),
+  },
+  {
     path: "/proyek/:id_proyek/rincian/:id",
     Element: lazy(() => import("./pages/Proyek/Rincian")),
   },

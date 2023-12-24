@@ -1,6 +1,6 @@
 import React from "react";
 
-import { EyeIcon } from "../icons";
+import { EyeIcon } from "../../icons"
 
 const Tabel = ({ data, isAll }) => {
   function formatTimestamp(timestamp) {
@@ -52,12 +52,6 @@ const Tabel = ({ data, isAll }) => {
             )}
             <th
               scope="col"
-              className="px-6 py-3 text-sm md:text-base font-medium text-gray-500 uppercase tracking-wider text-center"
-            >
-              Nama Proyek
-            </th>
-            <th
-              scope="col"
               className="px-6 py-3 text-sm md:text-base font-medium text-gray-500 uppercase tracking-wider text-center "
             >
               Jenis
@@ -99,9 +93,6 @@ const Tabel = ({ data, isAll }) => {
                   {item.inspectorName}
                 </td>
               )}
-              <td className="px-6 py-3 whitespace-nowrap">
-                {item.projectName}
-              </td>
               <td className="px-6 py-3 whitespace-nowrap flex justify-center">
                 <div
                   className={`text-center text-white text-[15px] font-bold px-2 py-1rounded-[18px] w-fit ${

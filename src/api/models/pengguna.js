@@ -28,19 +28,6 @@ const deactivePengawas = (id) => {
   return coreApi.delete(`/user/inspector/${id}`);
 };
 
-const addIncome = (data) => {
-  const { amount, ref, receiptImage } = data;
-
-  const body = new FormData();
-  body.append("amount", amount);
-  body.append("ref", ref);
-  body.append("receiptImage", receiptImage);
-  
-  return coreApi.post(`/user/inspector/income`, data, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-};
-
 // ---------- OTHER ------------
 
 const getStatistic = () => {
@@ -62,7 +49,6 @@ const getDetailStatistic = (interval_month, user_id) => {
 
 export {
   login,
-  addIncome,
   getPengguna,
   resetPassword,
   getPengawas,

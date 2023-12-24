@@ -13,19 +13,19 @@ const TabelAnggaran = ({ data }) => {
             <tr>
               <th
                 scope="col"
-                className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center w-[2rem]"
+                className="px-6 py-3 font-bold text-l text-gray-400 uppercase tracking-wider text-center w-[2rem]"
               >
                 NO
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center"
               >
                 URAIAN
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center"
               >
                 TOTAL
               </th>
@@ -51,9 +51,9 @@ const TabelAnggaran = ({ data }) => {
             <tr className={budgets?.length % 2 !== 0 ? "bg-slate-100" : ""}>
               <td
                 colSpan="2"
-                className="px-4 py-2 whitespace-nowrap text-center font-bold text-gray-400 text-base md:text-xl uppercase "
+                className="px-4 py-2 whitespace-nowrap text-center font-bold text-gray-400 text-base md:text-xl uppercase"
               >
-                Total Biaya
+                Total Anggaran
               </td>
               <td className="px-4 py-2 whitespace-nowrap text-left font-bold text-gray-400">
                 {data && data?.total}

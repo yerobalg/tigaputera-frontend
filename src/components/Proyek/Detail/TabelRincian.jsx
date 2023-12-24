@@ -45,25 +45,25 @@ const TabelRincian = ({
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center w-4 md:w-[2rem]"
+                  className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center w-4 md:w-[2rem]"
                 >
                   NO
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                  className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center"
                 >
                   URAIAN
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center "
+                  className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center "
                 >
                   TOTAL BIAYA
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                  className="px-6 py-3 text-l font-bold text-gray-400 uppercase tracking-wider text-center"
                 >
                   AKSI
                 </th>

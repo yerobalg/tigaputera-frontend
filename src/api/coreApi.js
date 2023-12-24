@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://tigaputera-api-swwwnmbvua-as.a.run.app/v1";
+const BASE_URL = "http://localhost:8080/v1";
 
 const api = axios.create({
   baseURL: BASE_URL,

@@ -5,12 +5,13 @@ import TabelRincian from "../../components/Proyek/Detail/TabelRincian";
 import UbahStatus from "../../components/Proyek/Detail/Popup/UbahStatus";
 import UbahAnggaran from "../../components/Proyek/Detail/Popup/UbahAnggaran";
 import { getProyekById } from "../../api/models/proyek";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Toast from "../../components/Toast";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { usePenggunaContext } from "../../context/PenggunaContext";
 import TambahKategori from "../../components/Proyek/Detail/Popup/TambahKategori";
+import { UpdateIcon, BukuKas } from "../../components/icons";
 
 const Detail = () => {
   const [proyekDetail, setProyekDetail] = useState([]);
@@ -26,6 +27,8 @@ const Detail = () => {
     isOpen2: false,
     isOpen3: false,
   });
+
+  const navigate = useNavigate();
 
   function formatTimestamp(timestamp) {
     const date = new Date(timestamp * 1000);
@@ -54,9 +57,8 @@ const Detail = () => {
     try {
       const response = await getProyekById(id);
       const { data: proyekDetail } = response.data;
-      proyekDetail.expectedFinished = formatTimestamp(
-        proyekDetail.expectedFinished
-      );
+      proyekDetail.startDate = formatTimestamp(proyekDetail.startDate);
+      proyekDetail.finalDate = formatTimestamp(proyekDetail.finalDate);
       setProyekDetail(proyekDetail);
       setErrors(false);
       setisLoading(false);
@@ -73,6 +75,8 @@ const Detail = () => {
       [element]: !prevState[element],
     }));
   };
+
+  console.log(proyekDetail);
 
   useEffect(() => {
     getTheProyek();
@@ -93,6 +97,15 @@ const Detail = () => {
                 </h3>
                 <h3 className="text-zinc-950 text-lg md:text-[21px] font-semibold ">
                   {proyekDetail.description}
+                </h3>
+                <h3 className="text-gray-500 text-lg md:text-xl font-bold">
+                  Pendapatan:{" "}
+                  <span className="text-orange-500">
+                    {proyekDetail?.projectStatistics?.totalIncome}
+                  </span>
+                  <span className="text-gray-500">
+                    {` (${proyekDetail?.projectStatistics?.PercentageFromBudget}% dari anggaran)`}
+                  </span>
                 </h3>
               </div>
               <div
@@ -117,15 +130,32 @@ const Detail = () => {
             </div>
 
             <div className="w-full flex justify-center items-center">
-              {penggunaInfo?.role !== "Pengawas" && (
+              <div className="flex flex-col md:flex-row gap-4">
+                {penggunaInfo?.role !== "Pengawas" && (
+                  <button
+                    type="submit"
+                    onClick={() => handleClick("isOpen1")}
+                    className="whitespace-nowrap px-10 py-2 bg-amber-500 rounded shadow-lg justify-center items-center text-center text-white text-opacity-90 text-base font-normal w-auto hover:bg-[#F9A602]"
+                  >
+                    <div className="flex items-center gap-2">
+                      <UpdateIcon />
+                      Ubah Status Proyek
+                    </div>
+                  </button>
+                )}
                 <button
                   type="submit"
-                  onClick={() => handleClick("isOpen1")}
-                  className="whitespace-nowrap px-10 py-2 bg-[#079AA2] rounded shadow-lg justify-center items-center text-center text-white text-opacity-90 text-base font-normal w-auto hover:bg-[#6fa8ab]"
+                  onClick={() => {
+                    navigate(`/proyek/${id}/buku-kas`);
+                  }}
+                  className="whitespace-nowrap px-10 py-2 bg-amber-500 rounded shadow-lg justify-center items-center text-center text-white text-opacity-90 text-base font-normal w-auto hover:bg-[#F9A602]"
                 >
-                  Ubah Status Proyek
+                  <div className="flex items-center gap-2">
+                    <BukuKas />
+                    Lihat Buku Kas Proyek
+                  </div>
                 </button>
-              )}
+              </div>
 
               {/* POPUP  */}
               {isOpenState["isOpen1"] && (
@@ -161,7 +191,10 @@ const Detail = () => {
                     onClick={() => handleClick("isOpen2")}
                     className="px-5 py-2 bg-amber-500 rounded-md hover:bg-[#F9A602] text-center text-white text-sm md:text-base font-medium hidden md:flex"
                   >
-                    Ubah Anggaran
+                    <div className="flex items-center gap-2">
+                      <UpdateIcon />
+                      Ubah Anggaran
+                    </div>
                   </button>
                   <button
                     onClick={() => handleClick("isOpen2")}
@@ -297,11 +330,19 @@ const formItems = (type, proyekDetail) => {
       </div>
 
       <div className="col-span-12 md:col-span-2 font-semibold">
-        Estimasi Selesai
+        Tanggal Mulai
       </div>
       <div className="col-span-12 md:col-span-10 font-medium flex gap-1">
         <span className="md:flex hidden">:</span>
-        <>{proyekDetail.expectedFinished}</>
+        <>{proyekDetail.startDate}</>
+      </div>
+
+      <div className="col-span-12 md:col-span-2 font-semibold">
+        Tanggal Berakhir
+      </div>
+      <div className="col-span-12 md:col-span-10 font-medium flex gap-1">
+        <span className="md:flex hidden">:</span>
+        <>{proyekDetail.finalDate}</>
       </div>
     </>
   );

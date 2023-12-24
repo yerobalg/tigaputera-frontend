@@ -20,7 +20,27 @@ const getProyekById = (id) => {
 };
 
 const getRincianProyek = (id_proyek, id) => {
-  return coreApi.get(`/project/${id_proyek}/expenditure/${id}/detail`);
+  return coreApi.get(`/project/${id_proyek}/expenditure/${id}/transaction`);
+};
+
+const getNamaProyek = () => {
+  return coreApi.get(`/project/name`);
+};
+
+const getBukuKasProyek = (proyek_id, page, limit, interval_month) => {
+  const queryParams = new URLSearchParams();
+
+  if (limit !== undefined) queryParams.set("limit", limit);
+  if (page !== undefined) queryParams.set("page", page);
+  if (interval_month !== undefined)
+    queryParams.set("interval_month", interval_month);
+
+  const queryString = queryParams.toString();
+  const url = `/project/${proyek_id}/ledger${
+    queryString ? `?${queryString}` : ""
+  }`;
+
+  return coreApi.get(url);
 };
 
 // --------------- POST || ADD  ---------------
@@ -42,7 +62,24 @@ const addExpenditureProyek = (id_proyek, id, data) => {
   body.append("amount", amount);
   body.append("receiptImage", receiptImage);
 
-  return coreApi.post(`/project/${id_proyek}/expenditure/${id}/detail`, body, {
+  return coreApi.post(
+    `/project/${id_proyek}/expenditure/${id}/transaction`,
+    body,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    }
+  );
+};
+
+const addProyekIncome = (data, idProyek) => {
+  const { amount, ref, receiptImage } = data;
+
+  const body = new FormData();
+  body.append("amount", amount);
+  body.append("ref", ref);
+  body.append("receiptImage", receiptImage);
+
+  return coreApi.post(`/project/${idProyek}/income`, data, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
@@ -67,12 +104,15 @@ const deleteExpenditureProyek = (id_proyek, id, id_detail) => {
 
 export {
   getProyek,
+  getNamaProyek,
   getProyekById,
   getRincianProyek,
+  getBukuKasProyek,
   addProyek,
   addKategoriProyek,
   addExpenditureProyek,
   updateStatusProyek,
   updateAnggaranProyek,
   deleteExpenditureProyek,
+  addProyekIncome,
 };

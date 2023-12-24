@@ -12,7 +12,10 @@ const ProyekTypes = [
 ];
 
 const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
+  const today = new Date().toISOString().split("T")[0];
   const [pengawas, setPengawas] = useState([]);
+  const [startDate, setStartDate] = useState(today);
+  const [finalDate, setFinalDate] = useState(today);
   const [forms, setForms] = useState({
     companyName: "",
     deptName: "",
@@ -23,12 +26,11 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
     type: "",
     volume: 0,
     width: 0,
-    expectedFinished: 0,
+    starDate: 0,
+    finalDate: 0,
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const today = new Date().toISOString().split("T")[0];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,13 +44,28 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
     }));
   };
 
-  const handleDateChange = (event) => {
+  const handleStartDate = (event) => {
     const dateString = event.target.value;
+    setStartDate(dateString);
+    setFinalDate(dateString);
     const dateEpoch = new Date(dateString).getTime() / 1000;
+    console.log(dateString, dateEpoch);
 
     setForms((prevState) => ({
       ...prevState,
-      expectedFinished: dateEpoch,
+      starDate: dateEpoch,
+    }));
+  };
+
+  const handleFinalDate = (event) => {
+    const dateString = event.target.value;
+    setFinalDate(dateString);
+    const dateEpoch = new Date(dateString).getTime() / 1000;
+    console.log(dateString, dateEpoch);
+
+    setForms((prevState) => ({
+      ...prevState,
+      finalDate: dateEpoch,
     }));
   };
 
@@ -83,7 +100,8 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
     try {
       setIsLoading(true);
       const response = await getPengawas();
-      setPengawas(response.data.data);
+      if (response?.data?.data)
+        setPengawas(response?.data?.data);
     } catch (error) {
       setErrors(true);
       setAlerts(true);
@@ -118,7 +136,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               </label>
               <input
                 name="name"
-                placeholder="Masukkan nama proyek"
+                placeholder="Jalan Flamboyan"
                 id="name"
                 value={forms.name}
                 onChange={(e) => handleChange(e)}
@@ -137,7 +155,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               </label>
               <input
                 name="description"
-                placeholder="Masukkan nama pekerjaan"
+                placeholder="Perbaikan Jalan Flamboyan"
                 id="description"
                 value={forms.description}
                 onChange={(e) => handleChange(e)}
@@ -156,7 +174,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               </label>
               <input
                 name="deptName"
-                placeholder="Masukkan nama dinas"
+                placeholder="PUPR"
                 id="deptName"
                 value={forms.deptName}
                 onChange={(e) => handleChange(e)}
@@ -182,6 +200,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
                 dropdown="max-h-[100px] overflow-auto"
                 color="capitalize text-slate-900 bg-neutral-100"
                 databases="id"
+                isDisabled={pengawas.length === 0}
               />
             </div>
           </div>
@@ -277,7 +296,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               </label>
               <input
                 name="companyName"
-                placeholder="Masukkan nama perusahaan"
+                placeholder="CV TPB"
                 id="companyName"
                 value={forms.companyName}
                 onChange={(e) => handleChange(e)}
@@ -286,23 +305,45 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
                 required
               />
             </div>
-            <div className="flex flex-col gap-1.5 w-full">
-              <label
-                htmlFor="estimatedFinished"
-                className="text-gray-400 text-xs font-normal"
-              >
-                Estimasi selesai<span className="text-red-500">*</span>
-              </label>
-              <input
-                name="estimatedFinished"
-                placeholder="Masukkan tanggal perkiraan selesai"
-                id="estimatedFinished"
-                onChange={handleDateChange}
-                className="px-3 py-[10px] bg-neutral-100 rounded-sm justify-start items-start w-1/2 text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
-                type="date"
-                min={today}
-                required
-              />
+            <div className="flex gap-5">
+              <div className="flex flex-col gap-1.5 w-full">
+                <label
+                  htmlFor="estimatedFinished"
+                  className="text-gray-400 text-xs font-normal"
+                >
+                  Tanggal Mulai<span className="text-red-500">*</span>
+                </label>
+                <input
+                  name="estimatedFinished"
+                  placeholder="Masukkan tanggal perkiraan selesai"
+                  id="estimatedFinished"
+                  onChange={handleStartDate}
+                  className="px-3 py-[10px] bg-neutral-100 rounded-sm w-full justify-start items-start text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
+                  type="date"
+                  min={today}
+                  required
+                />
+                
+              </div>
+              <div className="flex flex-col gap-1.5 w-full">
+                <label
+                  htmlFor="estimatedFinished"
+                  className="text-gray-400 text-xs font-normal"
+                >
+                  Tanggal Selesai<span className="text-red-500">*</span>
+                </label>
+                <input
+                  name="estimatedFinished"
+                  placeholder="Masukkan tanggal perkiraan selesai"
+                  id="estimatedFinished"
+                  onChange={handleFinalDate}
+                  className="px-3 py-[10px] bg-neutral-100 rounded-sm w-full justify-start items-start text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
+                  type="date"
+                  min={startDate}
+                  value={finalDate}
+                  required
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -111,6 +111,7 @@ const Rincian = () => {
             setAlerts={setAlerts}
             setErrors={setErrors}
             setMessage={setMessage}
+            isDeleteEnabled={penggunaInfo && penggunaInfo?.role === "Pengawas"}
           />
         )}
       </div>

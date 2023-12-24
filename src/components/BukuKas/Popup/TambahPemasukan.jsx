@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Popup from "../../Popup";
-import { addIncome } from "../../../api/models/pengguna";
+import { addProyekIncome } from "../../../api/models/proyek";
+import { getNamaProyek } from "../../../api/models/proyek";
+import DropDown from "../../DropDown";
 
 const TambahPemasukan = ({ handleClick, setAlerts, setErrors, setMessage }) => {
   const [forms, setForms] = useState({
@@ -10,6 +12,25 @@ const TambahPemasukan = ({ handleClick, setAlerts, setErrors, setMessage }) => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [proyek, setProyek] = useState([]);
+  const [idProyek, setIdProyek] = useState(0);
+
+  const fetchNamaProyek = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await getNamaProyek();
+      const data = response?.data?.data;
+      setProyek(data);
+    } catch (error) {
+      setErrors(true);
+      setAlerts(true);
+    }
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchNamaProyek();
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,15 +61,26 @@ const TambahPemasukan = ({ handleClick, setAlerts, setErrors, setMessage }) => {
     }
   };
 
+  const handleChangeDD = (_, value) => {
+    setIdProyek(value);
+  };
+
   const formatCurrency = (value) => {
     return value.replace(/,/g, ".");
   };
 
   const createIncome = async (e) => {
     e.preventDefault();
+
+    if (idProyek === 0) {
+      setErrors(true);
+      setMessage("Harap pilih proyek");
+      setAlerts(true);
+      return;
+    }
     try {
       setIsLoading(true);
-      const response = await addIncome(forms);
+      const response = await addProyekIncome(forms, idProyek);
       handleClick();
       setAlerts(true);
       setErrors(false);
@@ -120,6 +152,25 @@ const TambahPemasukan = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               className="px-3 py-[10px] bg-neutral-100 rounded-sm justify-start items-start w-full text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
               type="text"
               required
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5 w-full">
+            <label
+              htmlFor="username"
+              className="text-gray-400 text-xs font-normal"
+            >
+              Proyek<span className="text-red-500">*</span>
+            </label>
+            <DropDown
+              name="type"
+              handleChange={handleChangeDD}
+              data={proyek}
+              initial="Pilih proyek"
+              classname="flex justify-between items-center text-slate-900 text-sm font-normal px-3 py-[10px] bg-neutral-100 rounded-sm w-full border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602] focus:ring-[#F9A602]"
+              dropdown="max-h-[100px] overflow-auto"
+              color="capitalize text-slate-900 bg-neutral-100"
+              databases="id"
             />
           </div>
 

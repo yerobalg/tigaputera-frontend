@@ -3,7 +3,7 @@ import { EyeIcon, NonAktifkan } from "../../icons";
 import { deleteExpenditureProyek } from "../../../api/models/proyek";
 import { useParams } from "react-router-dom";
 
-const Tabel = ({ data, setAlerts, setErrors, setMessage }) => {
+const Tabel = ({ data, setAlerts, setErrors, setMessage, isDeleteEnabled }) => {
   const rincian = data?.details;
   const { id, id_proyek } = useParams();
 
@@ -97,13 +97,15 @@ const Tabel = ({ data, setAlerts, setErrors, setMessage }) => {
                 </td>
                 <td className="px-6 py-3 whitespace-nowrap">
                   <div className="flex justify-center gap-4">
-                    <button
-                      onClick={(e) => deleteExpenditureDetail(e, item.id)}
-                      className="bg-red-700 hover:bg-red-800 text-white px-3 py-1 rounded-md text-sm font-medium flex gap-2 justify-center items-center "
-                    >
-                      <NonAktifkan />
-                      Hapus
-                    </button>
+                    {isDeleteEnabled && (
+                      <button
+                        onClick={(e) => deleteExpenditureDetail(e, item.id)}
+                        className="bg-red-700 hover:bg-red-800 text-white px-3 py-1 rounded-md text-sm font-medium flex gap-2 justify-center items-center "
+                      >
+                        <NonAktifkan />
+                        Hapus
+                      </button>
+                    )}
                     <button
                       onClick={() => openImage(item.receiptUrl)}
                       className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm font-medium flex gap-2 justify-center items-center "
