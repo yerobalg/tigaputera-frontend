@@ -323,12 +323,6 @@ const formItems = (type, proyekDetail) => {
         </>
       )}
 
-      <div className="col-span-12 md:col-span-2 font-semibold">Perusahaan</div>
-      <div className="col-span-12 md:col-span-10 font-medium flex gap-1">
-        <span className="md:flex hidden">:</span>
-        <>{proyekDetail.companyName}</>
-      </div>
-
       <div className="col-span-12 md:col-span-2 font-semibold">
         Tanggal Mulai
       </div>

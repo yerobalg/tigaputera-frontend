@@ -17,7 +17,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
   const [startDate, setStartDate] = useState(today);
   const [finalDate, setFinalDate] = useState(today);
   const [forms, setForms] = useState({
-    companyName: "",
+    companyName: "PT TPB",
     deptName: "",
     description: "",
     inspectorId: 0,
@@ -287,24 +287,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               </div>
             )}
 
-            <div className="flex flex-col gap-1.5 w-full">
-              <label
-                htmlFor="companyName"
-                className="text-gray-400 text-xs font-normal"
-              >
-                Perusahaan<span className="text-red-500">*</span>
-              </label>
-              <input
-                name="companyName"
-                placeholder="CV TPB"
-                id="companyName"
-                value={forms.companyName}
-                onChange={(e) => handleChange(e)}
-                className="px-3 py-[10px] bg-neutral-100 rounded-sm justify-start items-start w-full text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
-                type="text"
-                required
-              />
-            </div>
+            
             <div className="flex gap-5">
               <div className="flex flex-col gap-1.5 w-full">
                 <label
@@ -321,6 +304,7 @@ const TambahProyek = ({ handleClick, setAlerts, setErrors, setMessage }) => {
                   className="px-3 py-[10px] bg-neutral-100 rounded-sm w-full justify-start items-start text-black text-sm md:text-md font-normal border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602]"
                   type="date"
                   min={today}
+                  value={startDate}
                   required
                 />
                 
