@@ -169,21 +169,23 @@ const Statistik = () => {
           {/* TITLE  */}
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 justify-between items-center mt-2 md:mt-10">
             <h3 className="text-slate-800 text-xl font-semibold bg-white rounded-lg p-[18px] w-full lg:w-fit lg:min-w-[35%]">
-              Statistik Proyek
+              Statistik Pengawas
             </h3>
             <div className="flex gap-4 w-full md:w-fit">
               {penggunaInfo && penggunaInfo?.role !== "Pengawas" && (
-                <DropDown
-                  handleChange={handleChangeDD}
-                  data={pengawas}
-                  classname="flex justify-between items-center text-slate-900 text-sm font-normal px-3 py-[10px] bg-neutral-100 rounded-sm w-full border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602] focus:ring-[#F9A602] md:min-w-[180px] min-w-[100px]"
-                  dropdown="max-h-[100px] overflow-auto"
-                  color="capitalize text-slate-900 bg-neutral-100"
-                  initial="Semua Pengawas"
-                  name="inspector_id"
-                  databases="id"
-                  base_id="0"
-                />
+                <>
+                  <DropDown
+                    handleChange={handleChangeDD}
+                    data={pengawas}
+                    classname="flex justify-between items-center text-slate-900 text-sm font-normal px-3 py-[10px] bg-neutral-100 rounded-sm w-full border-none focus:border-none hover:border-none focus:ring-1 focus:outline-[#F9A602] focus:ring-[#F9A602] md:min-w-[180px] min-w-[100px]"
+                    dropdown="max-h-[100px] overflow-auto"
+                    color="capitalize text-slate-900 bg-neutral-100"
+                    initial="Semua Pengawas"
+                    name="inspector_id"
+                    databases="id"
+                    base_id="0"
+                  />
+                </>
               )}
 
               <DropDown

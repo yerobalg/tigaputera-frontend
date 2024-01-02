@@ -103,7 +103,7 @@ const TambahPengeluaran = ({
               Tambah Pengeluaran{" "}
             </h2>
             <h3 className="text-gray-400 text-base font-normal">
-              Isi formulir di bawah ini untuk menambah anggaran.{" "}
+              Isi formulir di bawah ini untuk menambah pengeluaran proyek.{" "}
             </h3>
           </div>
           <div className="flex flex-col gap-1.5 w-full">

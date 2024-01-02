@@ -116,7 +116,7 @@ const TambahPemasukan = ({ handleClick, setAlerts, setErrors, setMessage }) => {
               Tambah Pemasukan
             </h2>
             <h3 className="text-gray-400 text-base font-normal">
-              Isi formulir di bawah ini untuk menambah pemasukan.{" "}
+              Isi formulir di bawah ini untuk menambah modal proyek.{" "}
             </h3>
           </div>
 

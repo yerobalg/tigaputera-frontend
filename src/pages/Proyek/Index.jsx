@@ -140,7 +140,19 @@ const Proyek = () => {
               Proyek Anda
             </h3>
             {penggunaInfo && penggunaInfo.role !== "Pengawas" && (
-              <>
+              <div className="flex gap-3">
+                <button
+                  onClick={handleClick}
+                  className="px-5 py-2 bg-amber-500 rounded-md hover:bg-[#F9A602] text-center text-white text-sm md:text-base font-medium hidden md:flex"
+                >
+                  Unduh Laporan Keuangan
+                </button>
+                <button
+                  onClick={handleClick}
+                  className="px-5 py-2 bg-amber-500 rounded-md hover:bg-[#F9A602] text-center text-white text-sm md:text-base font-medium flex md:hidden"
+                >
+                  Unduh
+                </button>
                 <button
                   onClick={handleClick}
                   className="px-5 py-2 bg-amber-500 rounded-md hover:bg-[#F9A602] text-center text-white text-sm md:text-base font-medium hidden md:flex"
@@ -153,7 +165,7 @@ const Proyek = () => {
                 >
                   Tambah
                 </button>
-              </>
+              </div>
             )}
 
             {/* POPUP  */}
